@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f6f8f7" />
+    <title>MediNear — Facility Locator Demo</title>
+    <link rel="stylesheet" href="static/styles.css" />
+  </head>
+  <body>
+    <main class="page-shell">
+      <header class="topbar">
+        <a class="brand" href="/" aria-label="MediNear home">
+          <span class="brand-mark" aria-hidden="true">+</span>
+          <span>MediNear</span>
+        </a>
+        <span class="demo-pill"><span class="status-dot"></span> DEMO MODE</span>
+      </header>
+
+      <section class="hero">
+        <div class="eyebrow">VOICE-FIRST FACILITY SEARCH</div>
+        <h1>Care nearby,<br /><span>without the guesswork.</span></h1>
+        <p class="hero-copy">Find hospitals, clinics, diagnostic centres, and pharmacies by speaking or typing an area.</p>
+      </section>
+
+      <section class="notice-card" aria-label="Demo data notice">
+        <div class="notice-icon" aria-hidden="true">i</div>
+        <div>
+          <strong id="notice-title">Fictional sample records</strong>
+          <p id="notice-body">This demo uses fictional records, not live ABDM HFR data. Do not use the results to seek care, call, or navigate.</p>
+        </div>
+      </section>
+
+      <section id="consent-panel" class="consent-card">
+        <div class="section-kicker">BEFORE WE BEGIN</div>
+        <h2>A quick privacy note</h2>
+        <p id="consent-copy">MediNear is an AI demo. It does not record or store your voice or search. If you use the microphone, your browser’s speech-recognition service may process the audio. Your search text is sent to this demo server and is not saved.</p>
+        <p class="consent-copy-hi" lang="hi">MediNear एक AI डेमो है। यह आपकी आवाज़ रिकॉर्ड या सेव नहीं करता। माइक्रोफ़ोन इस्तेमाल करने पर आपके ब्राउज़र की speech-recognition सेवा ऑडियो प्रोसेस कर सकती है। आपकी खोज इस डेमो सर्वर पर भेजी जाएगी, लेकिन सेव नहीं होगी।</p>
+        <div class="consent-actions">
+          <button id="consent-button" class="button button-primary" type="button">I understand and agree</button>
+          <button id="decline-button" class="button button-quiet" type="button">Continue without consent</button>
+        </div>
+        <p id="consent-status" class="inline-status" role="status">Search and microphone are disabled until you agree.</p>
+      </section>
+
+      <section id="search-panel" class="search-card is-hidden" aria-labelledby="search-heading">
+        <div class="search-card-head">
+          <div>
+            <div class="section-kicker">YOUR SEARCH</div>
+          <h2 id="search-heading">What do you need?</h2>
+          </div>
+          <div class="language-switch" role="group" aria-label="Response language">
+            <button class="language-option is-selected" data-language="en" type="button" aria-pressed="true">EN</button>
+            <button class="language-option" data-language="hi" type="button" aria-pressed="false">हिंदी</button>
+          </div>
+        </div>
+
+        <form id="search-form">
+          <label id="category-label" for="category">Facility type</label>
+          <select id="category" name="category">
+            <option id="category-all" value="all">Any facility</option>
+            <option id="category-hospital" value="hospital">Hospital</option>
+            <option id="category-clinic" value="clinic">Clinic</option>
+            <option id="category-diagnostics" value="diagnostic_center">Diagnostic centre / lab</option>
+            <option id="category-pharmacy" value="pharmacy">Pharmacy / medical store</option>
+          </select>
+
+          <label id="location-label" for="location">Area or PIN code</label>
+          <div class="location-input-row">
+            <input id="location" name="location" type="text" maxlength="160" autocomplete="off" placeholder="For example: Kanpur or 208001" required />
+            <button id="mic-button" class="mic-button" type="button" aria-label="Speak your area" title="Speak your area">
+              <span aria-hidden="true">🎙</span>
+            </button>
+          </div>
+          <p id="field-hint" class="field-hint">The demo has sample records for Kanpur only. PIN-based location is approximate.</p>
+          <p id="voice-status" class="inline-status" role="status" aria-live="polite"></p>
+          <p id="voice-support" class="field-hint" aria-live="polite"></p>
+          <button id="search-button" class="button button-primary search-button" type="submit">Find nearby facilities <span aria-hidden="true">→</span></button>
+        </form>
+      </section>
+
+      <section id="response-panel" class="response-panel is-hidden" aria-live="polite">
+        <div class="response-heading-row">
+          <div>
+            <div class="section-kicker">RESULTS</div>
+            <h2 id="results-title">Nearby matches</h2>
+          </div>
+          <button id="speak-button" class="button button-quiet speak-button" type="button">▶ Read aloud</button>
+        </div>
+        <div id="assistant-message" class="assistant-message"></div>
+        <div id="facility-list" class="facility-list"></div>
+        <p id="distance-note" class="distance-note"></p>
+      </section>
+
+      <footer class="page-footer">
+        <span>Informational directory demo · No diagnosis or treatment advice</span>
+        <span><a href="https://facility.abdm.gov.in/searchV2" target="_blank" rel="noreferrer">ABDM HFR portal ↗</a></span>
+      </footer>
+    </main>
+
+    <div id="alert-banner" class="alert-banner is-hidden" role="alert"></div>
+    <script src="static/app.js" defer></script>
+  </body>
+</html>
